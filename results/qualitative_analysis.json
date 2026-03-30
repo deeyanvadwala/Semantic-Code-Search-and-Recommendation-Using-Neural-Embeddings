@@ -14,29 +14,29 @@
     "semantic_top3": [
       {
         "func_name": "sort_dict",
-        "score": 0.8967585086822509
+        "score": 0.8805289983749389
       },
       {
-        "func_name": "_dict_values_sorted_by_key",
-        "score": 0.8885519742965698
+        "func_name": "sort_counter",
+        "score": 0.8770998245477676
       },
       {
         "func_name": "sort_dict",
-        "score": 0.8790531873703002
+        "score": 0.8699049472808837
       }
     ],
     "keyword_top3": [
       {
         "func_name": "extract_list_from_list_of_dict",
-        "score": 0.4448171276065125
+        "score": 0.3880321364018696
       },
       {
-        "func_name": "EmailBatch.as_dict",
-        "score": 0.33854780602040124
+        "func_name": "empty_list",
+        "score": 0.34881256699047
       },
       {
-        "func_name": "menu",
-        "score": 0.30672503355228775
+        "func_name": "sort_schemas",
+        "score": 0.31172277164573825
       }
     ]
   },
@@ -53,30 +53,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "flatten_errors",
-        "score": 0.9031441370646159
+        "func_name": "flatten",
+        "score": 0.9265457550684612
       },
       {
         "func_name": "flatten",
-        "score": 0.8950084606806438
+        "score": 0.9250167767206828
       },
       {
         "func_name": "flatten",
-        "score": 0.8904236714045207
+        "score": 0.9057813445727031
       }
     ],
     "keyword_top3": [
       {
         "func_name": "flatten",
-        "score": 0.6338170219482359
+        "score": 0.6431281554327695
       },
       {
         "func_name": "flatten",
-        "score": 0.6050054163289144
+        "score": 0.5337503608844156
       },
       {
         "func_name": "flatten",
-        "score": 0.5341716211393763
+        "score": 0.4711045703102938
       }
     ]
   },
@@ -94,30 +94,30 @@
     },
     "semantic_top3": [
       {
+        "func_name": "delete_duplicates",
+        "score": 0.9144312858581543
+      },
+      {
         "func_name": "remove_duplicates",
-        "score": 0.881501579284668
+        "score": 0.8832685589790344
       },
       {
         "func_name": "dedupe",
-        "score": 0.8797545433044434
-      },
-      {
-        "func_name": "Catalog.merge_duplicates",
-        "score": 0.8634876728057861
+        "score": 0.8793336153030396
       }
     ],
     "keyword_top3": [
       {
         "func_name": "delete_duplicates",
-        "score": 0.545031546099454
-      },
-      {
-        "func_name": "find_duplicates",
-        "score": 0.41366975435916054
+        "score": 0.5187835822246054
       },
       {
         "func_name": "remove_duplicates",
-        "score": 0.41019138110410963
+        "score": 0.4008630879960323
+      },
+      {
+        "func_name": "dedupe",
+        "score": 0.3733724873966366
       }
     ]
   },
@@ -134,30 +134,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "Type2JoinHelper._intersection",
-        "score": 0.8793065706888835
+        "func_name": "tuple_intersection",
+        "score": 0.8963997773329417
       },
       {
-        "func_name": "RangeSet.intersection",
-        "score": 0.8745601177215576
+        "func_name": "intersection",
+        "score": 0.8496267477671305
       },
       {
-        "func_name": "reduce_sorted_to_intersect",
-        "score": 0.8737553358078003
+        "func_name": "_intersection",
+        "score": 0.8360386768976847
       }
     ],
     "keyword_top3": [
       {
         "func_name": "intersection",
-        "score": 0.5250066168545962
+        "score": 0.5264253874361489
       },
       {
         "func_name": "Set.intersection_update",
-        "score": 0.5120884272151164
+        "score": 0.5133499095585561
       },
       {
         "func_name": "ScienceData.intersect_4",
-        "score": 0.4941657254180402
+        "score": 0.47550081876276895
       }
     ]
   },
@@ -176,29 +176,29 @@
     "semantic_top3": [
       {
         "func_name": "chunks",
-        "score": 0.9244886755943298
+        "score": 0.9218161821365356
+      },
+      {
+        "func_name": "_chunks",
+        "score": 0.8909481287002563
       },
       {
         "func_name": "splitAt",
-        "score": 0.8903042197227478
-      },
-      {
-        "func_name": "_chunked",
-        "score": 0.8802907466888428
+        "score": 0.8867230534553527
       }
     ],
     "keyword_top3": [
       {
+        "func_name": "chunks",
+        "score": 0.5988964273966009
+      },
+      {
         "func_name": "iterate_chunks",
-        "score": 0.505148402319721
+        "score": 0.5093136991918215
       },
       {
         "func_name": "chunks",
-        "score": 0.45996661436344577
-      },
-      {
-        "func_name": "chunks",
-        "score": 0.4567582833075666
+        "score": 0.4605388693117469
       }
     ]
   },
@@ -214,30 +214,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "to_unicode_string",
-        "score": 0.8737160754203797
+        "func_name": "reverse_string_list",
+        "score": 0.8955738693475723
       },
       {
-        "func_name": "_reverse",
-        "score": 0.8602506113052368
+        "func_name": "reverse",
+        "score": 0.8847830486297608
       },
       {
-        "func_name": "to_str",
-        "score": 0.852159857749939
+        "func_name": "solve",
+        "score": 0.8593723177909851
       }
     ],
     "keyword_top3": [
       {
-        "func_name": "Reverse.build_subreverse",
-        "score": 0.3753358886539754
+        "func_name": "reverse_string_list",
+        "score": 0.4129584308372834
+      },
+      {
+        "func_name": "reverse_words",
+        "score": 0.38785426434239034
       },
       {
         "func_name": "Alignment.reverse_query",
-        "score": 0.36957548847863786
-      },
-      {
-        "func_name": "colored.reverse_dict",
-        "score": 0.36433618083706043
+        "score": 0.3627693131674678
       }
     ]
   },
@@ -254,30 +254,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "is_unicode_string",
-        "score": 0.8777917941411336
+        "func_name": "is_palindrome",
+        "score": 0.933278234799703
       },
       {
-        "func_name": "is_standalone",
-        "score": 0.8648561398188274
+        "func_name": "is_palindrome",
+        "score": 0.9312431534131368
       },
       {
-        "func_name": "unwire_deprecated",
-        "score": 0.8507333993911743
+        "func_name": "is_pangram",
+        "score": 0.8798267404238383
       }
     ],
     "keyword_top3": [
       {
-        "func_name": "Pingdom.getCheck",
-        "score": 0.41096980751140166
+        "func_name": "check_char",
+        "score": 0.4277301131253869
+      },
+      {
+        "func_name": "check_str",
+        "score": 0.41217420588233283
       },
       {
         "func_name": "is_url",
-        "score": 0.37795919843214926
-      },
-      {
-        "func_name": "is_json",
-        "score": 0.3565526268760341
+        "score": 0.3721595025046757
       }
     ]
   },
@@ -294,30 +294,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "date_to_string",
-        "score": 0.9340444525082906
+        "func_name": "GitHubObject._strptime",
+        "score": 0.897260308265686
       },
       {
-        "func_name": "DTTransformer.safe_datetime_cast",
-        "score": 0.9078959385553996
+        "func_name": "parse",
+        "score": 0.8876551389694214
       },
       {
-        "func_name": "_to_rfc822",
-        "score": 0.9038041989008586
+        "func_name": "string_to_datetime",
+        "score": 0.8861857056617737
       }
     ],
     "keyword_top3": [
       {
         "func_name": "to_snake_case",
-        "score": 0.4913276695705688
+        "score": 0.48119105224087394
       },
       {
         "func_name": "Version.str_to_time",
-        "score": 0.47527985042137827
+        "score": 0.4673306250906964
       },
       {
-        "func_name": "to_none_or_dt",
-        "score": 0.4540114995938761
+        "func_name": "MetadataEncoder.default",
+        "score": 0.46385705618504436
       }
     ]
   },
@@ -335,29 +335,29 @@
     "semantic_top3": [
       {
         "func_name": "remove_whitespace",
-        "score": 0.9127163608868917
+        "score": 0.9143767674763997
       },
       {
-        "func_name": "remove_unnecessary_whitespace",
-        "score": 0.911501677831014
+        "func_name": "remove_all_spaces",
+        "score": 0.9058912022908528
       },
       {
-        "func_name": "XmlImplAdapter.ignore_whitespace_text_nodes",
-        "score": 0.8952280441919963
+        "func_name": "remove_whitespace",
+        "score": 0.9054872711499532
       }
     ],
     "keyword_top3": [
       {
-        "func_name": "nonalpha_split",
-        "score": 0.4471719591279447
-      },
-      {
         "func_name": "Tracker.determine_if_whitespace",
-        "score": 0.4394680402438435
+        "score": 0.4550335300277523
       },
       {
-        "func_name": "syllable_split",
-        "score": 0.4290019974400523
+        "func_name": "nonalpha_split",
+        "score": 0.44027281636024296
+      },
+      {
+        "func_name": "remove_whitespace",
+        "score": 0.419866913206591
       }
     ]
   },
@@ -376,29 +376,29 @@
     "semantic_top3": [
       {
         "func_name": "SimpleBayes.count_token_occurrences",
-        "score": 0.8771265453762478
+        "score": 0.8807107514805264
       },
       {
-        "func_name": "text2wngram",
-        "score": 0.8611505031585693
+        "func_name": "count_char_position",
+        "score": 0.8672846264309353
       },
       {
         "func_name": "text2wfreq",
-        "score": 0.8590105772018433
+        "score": 0.859176754951477
       }
     ],
     "keyword_top3": [
       {
+        "func_name": "frequency",
+        "score": 0.40532294380767336
+      },
+      {
         "func_name": "SimpleBayes.count_token_occurrences",
-        "score": 0.3912808436535322
+        "score": 0.3743122365122542
       },
       {
         "func_name": "get_verbatim",
-        "score": 0.3518623485529571
-      },
-      {
-        "func_name": "syllabify",
-        "score": 0.33630546270440365
+        "score": 0.3620485182947089
       }
     ]
   }

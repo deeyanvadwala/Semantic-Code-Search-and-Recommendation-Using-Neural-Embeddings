@@ -23,6 +23,26 @@ for d in [RAW_DATA_DIR, PROCESSED_DATA_DIR, INDEX_DIR, RESULTS_DIR]:
 DATASET_NAME = "code_search_net"
 DATASET_LANGUAGE = "python"
 MAX_FUNCTIONS = 50_000  # Limit for manageable compute; increase as needed
+MAX_EVAL_PAIRS = 500
+
+# Corpus quality filtering
+MIN_DOCSTRING_CHARS = 10
+MIN_EVAL_DOCSTRING_CHARS = 20
+MIN_CODE_LINES = 2
+MIN_EVAL_CODE_LINES = 3
+MAX_CODE_LINES = 200
+MAX_DOCSTRING_WORDS = 120
+MIN_REPRESENTATION_TOKENS = 4
+
+# Generic names create noisy matches for natural-language search.
+GENERIC_FUNCTION_NAMES = {
+    "add", "append", "apply", "build", "call", "check", "close", "copy",
+    "create", "delete", "do", "dump", "execute", "fetch", "find", "from",
+    "get", "handle", "init", "initialize", "insert", "load", "make", "open",
+    "parse", "post", "process", "put", "read", "remove", "render", "run",
+    "save", "send", "set", "sort", "start", "stop", "to", "update", "validate",
+    "write",
+}
 
 # ─── Embedding Model ─────────────────────────────────────────
 # multilingual-e5-large: validated by Ryu et al. (2025) for code search
@@ -47,11 +67,13 @@ TOP_K_FINAL = 10        # Final results after re-ranking
 TOP_K_VALUES = [1, 3, 5, 10]  # K values for evaluation metrics
 
 # ─── Re-ranking Configuration (adapted from SEMANTIC CODE FINDER) ─
-# Penalty for trivially short functions
-SHORT_CODE_PENALTY_THRESHOLD_SEVERE = 3   # lines
-SHORT_CODE_PENALTY_SEVERE = 0.10          # 10% penalty
-SHORT_CODE_PENALTY_THRESHOLD_MILD = 5     # lines
-SHORT_CODE_PENALTY_MILD = 0.03            # 3% penalty
+# Penalty for trivially short functions.
+# Keep penalties small — short utility functions (e.g. "add two numbers")
+# are legitimate results and should not be strongly demoted.
+SHORT_CODE_PENALTY_THRESHOLD_SEVERE = 2   # lines (only 1-2 line one-liners)
+SHORT_CODE_PENALTY_SEVERE = 0.04          # 4% penalty (was 10%)
+SHORT_CODE_PENALTY_THRESHOLD_MILD = 4     # lines
+SHORT_CODE_PENALTY_MILD = 0.01            # 1% penalty (was 3%)
 
 # Weight for function name similarity in re-ranking
 NAME_SIMILARITY_WEIGHT = 0.10  # 10% contribution to final score

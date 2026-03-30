@@ -146,38 +146,52 @@ class SemanticSearchEngine:
         if verbose:
             print(f"After length penalty: shortlisted {len(shortlist)} candidates")
         
-        # ── Step 3: Name similarity bonus ─────────────────────
-        # Encode the query and function names for similarity comparison
+        # ── Step 3: Name similarity bonus + primary-token signal ──
         query_tokens = set(query.lower().split())
-        
+        query_words = query.lower().split()
+        # First word is usually the operation/verb ("add", "sort", "read", …)
+        primary_token = query_words[0] if query_words else ""
+
         final_scored = []
         for idx, score, meta in shortlist:
             func_name = meta.get("func_name", "")
             name_readable = normalize_function_name(func_name)
             name_tokens = set(name_readable.split())
-            
-            # Simple token overlap for name similarity
+
+            # Token overlap between query and function name
             if name_tokens and query_tokens:
                 overlap = len(query_tokens & name_tokens)
                 name_sim = overlap / max(len(query_tokens), len(name_tokens))
             else:
                 name_sim = 0.0
-            
-            # Final score: cosine similarity + 10% name similarity bonus
-            final_score = score + (config.NAME_SIMILARITY_WEIGHT * name_sim)
-            
+
+            # Penalize results where the primary query token (the operation) is
+            # absent from both the function name and docstring.
+            # Fuzzy match handles "adds"/"adding" satisfying query token "add".
+            docstring = meta.get("docstring", "").lower()
+            doc_tokens = set(docstring.split())
+            all_tokens = name_tokens | doc_tokens
+            has_primary_signal = _fuzzy_token_match(primary_token, all_tokens)
+            keyword_penalty = 0.0 if has_primary_signal else 0.05
+
+            # Final score: cosine + name bonus - noise penalty
+            final_score = score + (config.NAME_SIMILARITY_WEIGHT * name_sim) - keyword_penalty
+
             result = {**meta, "score": final_score, "index": idx}
             if verbose:
                 result["_debug"] = {
                     "cosine_score": score,
                     "name_sim": name_sim,
                     "name_bonus": config.NAME_SIMILARITY_WEIGHT * name_sim,
+                    "primary_token": primary_token,
+                    "has_primary_signal": has_primary_signal,
+                    "keyword_penalty": keyword_penalty,
                 }
             final_scored.append(result)
-        
+
         # ── Step 4: Final ranking ─────────────────────────────
         final_scored.sort(key=lambda x: x["score"], reverse=True)
-        
+
         return final_scored[:top_k]
     
     def batch_search(
@@ -246,3 +260,20 @@ def _indent(text: str, spaces: int) -> str:
     """Indent each line of text."""
     prefix = ' ' * spaces
     return '\n'.join(prefix + line for line in text.split('\n'))
+
+
+def _fuzzy_token_match(token: str, token_set: set) -> bool:
+    """Check if token matches any element in token_set with light morphological fuzzing.
+
+    Exact match is always tried first. For tokens >= 3 chars, also checks if any
+    set member starts with the token and extends by at most 3 characters — this
+    handles common inflections: add→adds/added/adding, sort→sorted/sorting, etc.
+    """
+    if token in token_set:
+        return True
+    if len(token) >= 3:
+        return any(
+            t.startswith(token) and 0 < len(t) - len(token) <= 3
+            for t in token_set
+        )
+    return False
