@@ -72,7 +72,7 @@ def main():
     
     qualitative_results = []
     
-    for q in PYTHON_QUERIES_50[:10]:  # Show first 10 for brevity
+    for q in PYTHON_QUERIES_50:
         print(f"\n{'─' * 50}")
         print(f"  Query {q['id']}: \"{q['query']}\"")
         print(f"  Category: {q['category']}")

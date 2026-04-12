@@ -22,7 +22,7 @@ for d in [RAW_DATA_DIR, PROCESSED_DATA_DIR, INDEX_DIR, RESULTS_DIR]:
 # Using CodeSearchNet Python subset (Husain et al., 2019)
 DATASET_NAME = "code_search_net"
 DATASET_LANGUAGE = "python"
-MAX_FUNCTIONS = 50_000  # Limit for manageable compute; increase as needed
+MAX_FUNCTIONS = 200_000  # Limit for manageable compute; increase as needed
 MAX_EVAL_PAIRS = 500
 
 # Corpus quality filtering
@@ -59,7 +59,7 @@ PASSAGE_PREFIX = "passage: "
 FAISS_INDEX_PATH = INDEX_DIR / "code_embeddings.index"
 METADATA_PATH = INDEX_DIR / "code_metadata.pkl"
 FAISS_USE_GPU = False  # Set True if GPU available
-NPROBE = 10  # Number of clusters to search (for IVF indexes)
+NPROBE = 20  # Number of clusters to search (for IVF indexes); increased for 200K corpus
 
 # ─── Search Configuration ────────────────────────────────────
 TOP_K_CANDIDATES = 50   # Initial retrieval pool (matching Ryu et al.)
@@ -78,6 +78,21 @@ SHORT_CODE_PENALTY_MILD = 0.01            # 1% penalty (was 3%)
 # Weight for function name similarity in re-ranking
 NAME_SIMILARITY_WEIGHT = 0.10  # 10% contribution to final score
 
+# Bonus for functions with numeric type-annotated params when query asks about numbers.
+# Helps simple typed functions (e.g. add(x: int, y: int)) rank above untyped or
+# array-based functions when the query explicitly mentions "numbers"/"integers".
+PARAM_TYPE_BONUS = 0.015
+
+# Penalty for HTTP route handlers when the query has no web/HTTP intent.
+# Functions reading from request.params / request.args are almost never the
+# right answer for a general programming query like "add two numbers".
+WEB_HANDLER_PENALTY = 0.15
+
+# Bonus for functions with simple positional params (no self/cls/*args) when
+# the query asks for a basic operation on plain values.  This surfaces clean
+# utility functions above class methods with similar cosine scores.
+SIMPLE_PARAMS_BONUS = 0.02
+
 # ─── Keyword Baseline ────────────────────────────────────────
 TFIDF_MAX_FEATURES = 10_000
 TFIDF_NGRAM_RANGE = (1, 2)  # Unigrams and bigrams
@@ -87,8 +102,11 @@ NUM_EVAL_QUERIES = 50
 RANDOM_SEED = 42
 
 # ─── Device Configuration ────────────────────────────────────
-import torch
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+try:
+    import torch
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+except ImportError:
+    DEVICE = "cpu"
 
 print(f"[Config] Device: {DEVICE}")
 print(f"[Config] Embedding model: {EMBEDDING_MODEL_NAME}")

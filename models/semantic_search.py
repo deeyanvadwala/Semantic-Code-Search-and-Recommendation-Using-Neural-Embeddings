@@ -8,6 +8,7 @@ Implements the full search pipeline:
    (adapted from Ryu et al., 2025 — SEMANTIC CODE FINDER)
 """
 
+import re
 import numpy as np
 from typing import List, Dict, Tuple, Optional
 from pathlib import Path
@@ -18,6 +19,34 @@ import config
 from models.embedding_model import CodeEmbeddingModel
 from models.indexer import FAISSIndexer
 from utils.preprocessing import preprocess_query, normalize_function_name
+
+
+# ── Module-level compiled patterns (built once at import time) ────────────
+
+# Code patterns that indicate an HTTP route handler.
+# Any function that reads from request.params / request.args / request.form /
+# request.json, or carries a Flask/Bottle/Django @route decorator, is
+# almost certainly a web handler — wrong for general programming queries.
+_WEB_HANDLER_RE = re.compile(
+    r'request\.(params|args|form|json|data|values|get\()'
+    r'|@app\.route|@blueprint\.|@router\.'
+    r'|HttpRequest|HttpResponse'
+    r'|from flask import|from bottle import|from django',
+    re.IGNORECASE,
+)
+
+# Query words that signal legitimate web/HTTP intent — these suppress the penalty.
+_WEB_QUERY_WORDS = {
+    "http", "request", "response", "api", "route", "endpoint",
+    "flask", "django", "fastapi", "web", "server", "url",
+    "get", "post", "put", "delete", "handler",
+}
+
+# Query words that signal the user wants a plain utility function.
+_SIMPLE_QUERY_WORDS = {
+    "number", "numbers", "integer", "integers", "float", "floats",
+    "string", "strings", "list", "lists", "two", "three", "value", "values",
+}
 
 
 class SemanticSearchEngine:
@@ -174,8 +203,57 @@ class SemanticSearchEngine:
             has_primary_signal = _fuzzy_token_match(primary_token, all_tokens)
             keyword_penalty = 0.0 if has_primary_signal else 0.05
 
-            # Final score: cosine + name bonus - noise penalty
-            final_score = score + (config.NAME_SIMILARITY_WEIGHT * name_sim) - keyword_penalty
+            # Parameter type alignment bonus:
+            # When the query asks about numeric operations (mentions "numbers", "integers",
+            # etc.), boost functions whose signature has numeric type annotations.
+            # This surfaces simple typed functions like add(x: int, y: int) above
+            # untyped or array-based alternatives with similar cosine scores.
+            _NUMERIC_QUERY_WORDS = {"number", "numbers", "integer", "integers", "float", "floats"}
+            type_bonus = 0.0
+            if query_tokens & _NUMERIC_QUERY_WORDS:
+                code_text = meta.get("code", "")
+                sig_match = re.search(r'def\s+\w+\s*\(([^)]*)\)', code_text)
+                if sig_match and re.search(r':\s*(int|float)', sig_match.group(1), re.IGNORECASE):
+                    type_bonus = config.PARAM_TYPE_BONUS
+
+            # Web handler penalty:
+            # Functions that read from HTTP request objects (request.params,
+            # request.args, request.form, etc.) are route handlers — they are
+            # almost never what the user wants for a general programming query.
+            # Apply a large penalty whenever the query contains no web/HTTP intent.
+            code_text = meta.get("code", "")
+            is_web_handler = bool(_WEB_HANDLER_RE.search(code_text))
+            web_penalty = 0.0
+            if is_web_handler and not (query_tokens & _WEB_QUERY_WORDS):
+                web_penalty = config.WEB_HANDLER_PENALTY
+
+            # Simple-params bonus:
+            # When the query asks for a basic operation on plain values (numbers,
+            # strings, lists) prefer functions whose signature consists only of
+            # simple positional arguments — no *args/**kwargs, no self/cls.
+            # This surfaces clean utility functions above class methods and
+            # variadic helpers with similar cosine scores.
+            simple_params_bonus = 0.0
+            if query_tokens & _SIMPLE_QUERY_WORDS:
+                sig_match = re.search(r'def\s+\w+\s*\(([^)]*)\)', code_text)
+                if sig_match:
+                    raw_params = sig_match.group(1).strip()
+                    # No self/cls, no *args/**kwargs, not empty
+                    if (raw_params
+                            and "self" not in raw_params
+                            and "cls"  not in raw_params
+                            and "*"    not in raw_params):
+                        simple_params_bonus = config.SIMPLE_PARAMS_BONUS
+
+            # Final score: cosine + bonuses - penalties
+            final_score = (
+                score
+                + config.NAME_SIMILARITY_WEIGHT * name_sim
+                - keyword_penalty
+                + type_bonus
+                + simple_params_bonus
+                - web_penalty
+            )
 
             result = {**meta, "score": final_score, "index": idx}
             if verbose:
@@ -186,6 +264,10 @@ class SemanticSearchEngine:
                     "primary_token": primary_token,
                     "has_primary_signal": has_primary_signal,
                     "keyword_penalty": keyword_penalty,
+                    "type_bonus": type_bonus,
+                    "is_web_handler": is_web_handler,
+                    "web_penalty": web_penalty,
+                    "simple_params_bonus": simple_params_bonus,
                 }
             final_scored.append(result)
 
@@ -229,6 +311,54 @@ class SemanticSearchEngine:
         
         return all_results
     
+    def add_functions(self, functions: List[Dict]) -> int:
+        """
+        Embed new functions and add them to the live FAISS index, then save.
+
+        This allows indexing code that was not in the original CodeSearchNet
+        corpus (e.g. a user's own codebase).  The quality filter here is
+        intentionally loose — we only drop completely empty or trivially tiny
+        entries so user code with no docstrings is still searchable.
+
+        Args:
+            functions: List of function dicts as produced by PythonFunctionExtractor
+
+        Returns:
+            Number of functions successfully added
+        """
+        import numpy as np
+        import faiss as _faiss
+        from utils.preprocessing import create_code_representation
+
+        valid = []
+        representations = []
+        for f in functions:
+            name = f.get("func_name", "").strip()
+            code = f.get("code", "").strip()
+            lines = f.get("code_lines", len(code.split("\n")))
+            if not name or lines < config.MIN_CODE_LINES:
+                continue
+            rep = create_code_representation(name, f.get("docstring", ""), code)
+            valid.append(f)
+            representations.append(rep)
+
+        if not valid:
+            print("  No valid functions found to add.")
+            return 0
+
+        print(f"  Embedding {len(valid)} new functions...")
+        embeddings = self.embedding_model.encode_passages(representations, show_progress=True)
+
+        embeddings = embeddings.astype(np.float32)
+        _faiss.normalize_L2(embeddings)
+
+        self.indexer.index.add(embeddings)
+        self.indexer.metadata.extend(valid)
+        self.indexer.save()
+
+        print(f"  Index updated — {self.indexer.size} total functions.")
+        return len(valid)
+
     def format_result(self, result: Dict, show_code: bool = True) -> str:
         """Pretty-print a single search result."""
         lines = [

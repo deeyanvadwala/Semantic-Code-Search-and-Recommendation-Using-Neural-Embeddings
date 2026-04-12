@@ -108,6 +108,11 @@ class EvalCorpusWrapper:
         """
         from utils.preprocessing import create_code_representation
 
+        # Guard against duplicate injection on re-run
+        if any(m.get("repo") == "eval" for m in keyword_engine.metadata):
+            print("  Eval pairs already injected, skipping.")
+            return []
+
         new_funcs = []
         for ep in eval_pairs:
             new_funcs.append({

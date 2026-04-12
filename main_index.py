@@ -97,7 +97,9 @@ def main():
     indexer = FAISSIndexer(embedding_dim=embeddings.shape[1])
     
     use_ivf = len(functions) > 10_000
-    indexer.build_index(embeddings, metadata, use_ivf=use_ivf)
+    # Scale clusters to sqrt(n) for better IVF recall on large corpora
+    n_clusters = max(100, int(len(functions) ** 0.5))
+    indexer.build_index(embeddings, metadata, use_ivf=use_ivf, n_clusters=n_clusters)
     indexer.save()
     
     # ── Build TF-IDF baseline ─────────────────────────────

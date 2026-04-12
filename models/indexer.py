@@ -72,7 +72,13 @@ class FAISSIndexer:
         
         # Add vectors to index
         self.index.add(embeddings)
-        
+
+        # Move to GPU if requested
+        if config.FAISS_USE_GPU and faiss.get_num_gpus() > 0:
+            res = faiss.StandardGpuResources()
+            self.index = faiss.index_cpu_to_gpu(res, 0, self.index)
+            print("FAISS index moved to GPU.")
+
         print(f"Index built. Total vectors: {self.index.ntotal}")
     
     def search(

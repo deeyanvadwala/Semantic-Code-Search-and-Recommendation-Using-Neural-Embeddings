@@ -58,8 +58,10 @@ class KeywordSearchEngine:
                 func.get("docstring", ""),
                 func.get("code", ""),
             )
-            # Also include raw code tokens for keyword matching
-            code_tokens = func.get("code", "").replace('\n', ' ')
+            # Include first 20 lines of code for keyword matching
+            # Truncated to avoid inflating TF-IDF vocabulary with noise from large functions
+            code_lines = func.get("code", "").split('\n')[:20]
+            code_tokens = ' '.join(code_lines)
             combined = f"{text} {code_tokens}"
             documents.append(combined)
         

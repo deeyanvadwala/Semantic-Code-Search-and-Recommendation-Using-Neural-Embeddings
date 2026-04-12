@@ -285,6 +285,168 @@ def _load_humaneval(id_offset: int) -> Tuple[List[Dict], Dict]:
     return functions, skipped
 
 
+# ─── LeetCode helpers ─────────────────────────────────────────
+
+def _load_leetcode(id_offset: int) -> Tuple[List[Dict], Dict]:
+    """Load LeetCode Python solutions and return corpus-ready records."""
+    from datasets import load_dataset
+
+    print("\nLoading LeetCode dataset...")
+    try:
+        ds = load_dataset("mhhmm/leetcode-solutions-python", split="train")
+    except Exception as e:
+        print(f"  Could not load LeetCode dataset: {e}")
+        return [], {}
+
+    functions = []
+    skipped = {}
+
+    for record in ds:
+        # Field names vary — try common ones
+        code = (
+            record.get("python_solution", "")
+            or record.get("solution", "")
+            or record.get("code", "")
+        ).strip()
+        title = (
+            record.get("title", "")
+            or record.get("name", "")
+            or record.get("problem_name", "")
+        ).strip()
+        description = (
+            record.get("description", "")
+            or record.get("content", "")
+            or record.get("problem", "")
+            or title
+        ).strip()
+
+        if not code or not description:
+            skipped["missing_fields"] = skipped.get("missing_fields", 0) + 1
+            continue
+
+        # Strip HTML tags that appear in LeetCode descriptions
+        description = re.sub(r"<[^>]+>", " ", description)
+        description = re.sub(r"\s+", " ", description).strip()
+        # Keep only the first sentence as docstring
+        first_sentence = re.split(r"[.!?]", description)[0].strip()
+        if not first_sentence:
+            first_sentence = title
+        docstring = first_sentence[:300]  # hard cap
+
+        extracted = _extract_main_function(code)
+        if not extracted:
+            skipped["no_function_found"] = skipped.get("no_function_found", 0) + 1
+            continue
+
+        func_name = extracted["func_name"]
+        func_code = extracted["code"]
+        code_lines = extracted["code_lines"]
+
+        keep, reason, quality = evaluate_corpus_quality(
+            func_name, docstring, func_code, code_lines, eval_mode=False
+        )
+        if not keep:
+            skipped[reason] = skipped.get(reason, 0) + 1
+            continue
+
+        functions.append({
+            "id": id_offset + len(functions),
+            "func_name": func_name,
+            "normalized_name": quality["normalized_name"],
+            "code": func_code,
+            "docstring": docstring,
+            "code_lines": code_lines,
+            "representation": quality["representation"],
+            "repo": "leetcode/mhhmm",
+            "path": f"leetcode/{title.replace(' ', '_').lower()}.py",
+        })
+
+    return functions, skipped
+
+
+# ─── APPS helpers ──────────────────────────────────────────────
+
+def _load_apps(id_offset: int, max_records: int = 5000) -> Tuple[List[Dict], Dict]:
+    """Load APPS (competitive programming) dataset and return corpus-ready records."""
+    from datasets import load_dataset
+
+    print("\nLoading APPS dataset...")
+    try:
+        ds = load_dataset("codeparrot/apps", split="train")
+    except Exception as e:
+        print(f"  Could not load APPS dataset: {e}")
+        return [], {}
+
+    functions = []
+    skipped = {}
+    processed = 0
+
+    for record in ds:
+        if processed >= max_records:
+            break
+        processed += 1
+
+        question = record.get("question", "").strip()
+        solutions_raw = record.get("solutions", "")
+
+        if not question or not solutions_raw:
+            skipped["missing_fields"] = skipped.get("missing_fields", 0) + 1
+            continue
+
+        # solutions is a JSON string containing a list of solution strings
+        try:
+            solutions = json.loads(solutions_raw) if isinstance(solutions_raw, str) else solutions_raw
+        except (json.JSONDecodeError, TypeError):
+            skipped["bad_solutions_json"] = skipped.get("bad_solutions_json", 0) + 1
+            continue
+
+        if not solutions:
+            skipped["no_solutions"] = skipped.get("no_solutions", 0) + 1
+            continue
+
+        # Try each solution until one yields a valid function
+        extracted = None
+        for sol in solutions[:3]:  # try up to 3 solutions
+            extracted = _extract_main_function(sol)
+            if extracted:
+                break
+
+        if not extracted:
+            skipped["no_function_found"] = skipped.get("no_function_found", 0) + 1
+            continue
+
+        # Build docstring from question text (first sentence, no HTML)
+        clean_q = re.sub(r"<[^>]+>", " ", question)
+        clean_q = re.sub(r"\s+", " ", clean_q).strip()
+        first_sentence = re.split(r"[.!?\n]", clean_q)[0].strip()
+        docstring = first_sentence[:300] if first_sentence else clean_q[:300]
+
+        func_name = extracted["func_name"]
+        func_code = extracted["code"]
+        code_lines = extracted["code_lines"]
+
+        keep, reason, quality = evaluate_corpus_quality(
+            func_name, docstring, func_code, code_lines, eval_mode=False
+        )
+        if not keep:
+            skipped[reason] = skipped.get(reason, 0) + 1
+            continue
+
+        functions.append({
+            "id": id_offset + len(functions),
+            "func_name": func_name,
+            "normalized_name": quality["normalized_name"],
+            "code": func_code,
+            "docstring": docstring,
+            "code_lines": code_lines,
+            "representation": quality["representation"],
+            "repo": "apps/codeparrot",
+            "path": f"apps/problem_{record.get('problem_id', len(functions))}.py",
+        })
+
+    return functions, skipped
+
+
 # ─── Main ─────────────────────────────────────────────────────
 
 def download_and_prepare():
@@ -298,7 +460,6 @@ def download_and_prepare():
     csn_dataset = load_dataset(
         config.DATASET_NAME,
         config.DATASET_LANGUAGE,
-        trust_remote_code=True,
     )
     for split, data in csn_dataset.items():
         print(f"  {split}: {len(data)} records")
@@ -329,9 +490,29 @@ def download_and_prepare():
         print(f"    - {reason}: {count}")
     functions.extend(he_functions)
 
-    # ── Step 4: Save ──────────────────────────────────────────
+    # ── Step 4: LeetCode ──────────────────────────────────────
     print(f"\n{'=' * 60}")
-    print("STEP 4: Saving")
+    print("STEP 4: LeetCode Python Solutions")
+    print("=" * 60)
+    lc_functions, lc_skipped = _load_leetcode(id_offset=len(functions))
+    print(f"  Kept: {len(lc_functions)}  |  Skipped: {sum(lc_skipped.values())}")
+    for reason, count in sorted(lc_skipped.items()):
+        print(f"    - {reason}: {count}")
+    functions.extend(lc_functions)
+
+    # ── Step 5: APPS ──────────────────────────────────────────
+    print(f"\n{'=' * 60}")
+    print("STEP 5: APPS (Competitive Programming)")
+    print("=" * 60)
+    apps_functions, apps_skipped = _load_apps(id_offset=len(functions))
+    print(f"  Kept: {len(apps_functions)}  |  Skipped: {sum(apps_skipped.values())}")
+    for reason, count in sorted(apps_skipped.items()):
+        print(f"    - {reason}: {count}")
+    functions.extend(apps_functions)
+
+    # ── Step 6: Save ──────────────────────────────────────────
+    print(f"\n{'=' * 60}")
+    print("STEP 6: Saving")
     print("=" * 60)
 
     corpus_path = config.PROCESSED_DATA_DIR / "functions_corpus.pkl"
@@ -357,10 +538,12 @@ def download_and_prepare():
     print(f"\n{'=' * 60}")
     print("SUMMARY")
     print("=" * 60)
-    csn_count  = len(functions) - len(mbpp_functions) - len(he_functions)
+    csn_count  = len(functions) - len(mbpp_functions) - len(he_functions) - len(lc_functions) - len(apps_functions)
     print(f"  CodeSearchNet:  {csn_count}")
     print(f"  MBPP:           {len(mbpp_functions)}")
     print(f"  HumanEval:      {len(he_functions)}")
+    print(f"  LeetCode:       {len(lc_functions)}")
+    print(f"  APPS:           {len(apps_functions)}")
     print(f"  Total corpus:   {len(functions)}")
     print(f"  Eval pairs:     {len(eval_pairs)}")
     print(f"  Code lines  — mean: {np.mean(code_lengths):.1f}, "
