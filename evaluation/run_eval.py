@@ -1,5 +1,5 @@
 """
-Evaluation runner: benchmarks Semantic vs Hybrid (RRF) search quality.
+Evaluation runner: benchmarks Semantic search quality.
 
 Metrics computed over PYTHON_QUERIES_50 (50 curated natural-language queries):
 
@@ -23,7 +23,6 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import config
 from models.semantic_search import SemanticSearchEngine
-from models.hybrid_search import HybridSearchEngine
 from evaluation.queries import PYTHON_QUERIES_50
 
 
@@ -65,23 +64,18 @@ def _relevant_set(results: list, keywords: list) -> set:
 
 def run_evaluation():
     print("=" * 58)
-    print("  EVALUATION: Semantic  vs  Hybrid (RRF)")
+    print("  EVALUATION: Semantic Search")
     print("=" * 58)
 
-    print("\nLoading engines...")
+    print("\nLoading engine...")
     semantic = SemanticSearchEngine()
     semantic.load()
-
-    hybrid = HybridSearchEngine()
-    hybrid.load()
 
     K_VALUES = config.TOP_K_VALUES   # [1, 3, 5, 10]
     max_k    = max(K_VALUES)
 
     sem_mrr:    list = []
-    hyb_mrr:    list = []
     sem_recall: dict = {k: [] for k in K_VALUES}
-    hyb_recall: dict = {k: [] for k in K_VALUES}
 
     skipped = 0
 
@@ -92,22 +86,17 @@ def run_evaluation():
         keywords = entry["keywords"]
 
         sem_results = semantic.search(query, top_k=max_k)
-        hyb_results = hybrid.search(query,   top_k=max_k)
 
-        # Derive relevance from the union of both result sets
-        all_results = sem_results + hyb_results
-        relevant    = _relevant_set(all_results, keywords)
+        relevant = _relevant_set(sem_results, keywords)
 
         if not relevant:
             skipped += 1
             continue
 
         sem_mrr.append(reciprocal_rank(sem_results, relevant))
-        hyb_mrr.append(reciprocal_rank(hyb_results, relevant))
 
         for k in K_VALUES:
             sem_recall[k].append(recall_at_k(sem_results, relevant, k))
-            hyb_recall[k].append(recall_at_k(hyb_results, relevant, k))
 
     n = len(sem_mrr)
     if n == 0:
@@ -116,19 +105,16 @@ def run_evaluation():
 
     # ─── Results table ────────────────────────────────────────
     col = 14
-    print(f"{'Metric':<18} {'Semantic':>{col}} {'Hybrid (RRF)':>{col}}  {'Delta':>{col}}")
-    print("─" * (18 + col * 3 + 4))
+    print(f"{'Metric':<18} {'Semantic':>{col}}")
+    print("─" * (18 + col + 2))
 
-    def row(label, s_vals, h_vals):
+    def row(label, s_vals):
         s = sum(s_vals) / len(s_vals)
-        h = sum(h_vals) / len(h_vals)
-        delta = h - s
-        sign  = "+" if delta >= 0 else ""
-        print(f"{label:<18} {s:>{col}.4f} {h:>{col}.4f}  {sign}{delta:>{col-1}.4f}")
+        print(f"{label:<18} {s:>{col}.4f}")
 
-    row("MRR", sem_mrr, hyb_mrr)
+    row("MRR", sem_mrr)
     for k in K_VALUES:
-        row(f"Recall@{k}", sem_recall[k], hyb_recall[k])
+        row(f"Recall@{k}", sem_recall[k])
 
     print(f"\nEvaluated on {n} / {len(PYTHON_QUERIES_50)} queries "
           f"({skipped} skipped — no relevant results found).")

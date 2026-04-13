@@ -32,7 +32,7 @@ CONFIDENCE_THRESHOLD = 0.015
 FALLBACK_MESSAGE = "We are currently working on it - will get back to you soon."
 
 
-def _do_index(engine: HybridSearchEngine, path_str: str):
+def _do_index(engine: SemanticSearchEngine, path_str: str):
     """Parse a .py file or directory and add extracted functions to the index."""
     path = Path(path_str.strip())
 

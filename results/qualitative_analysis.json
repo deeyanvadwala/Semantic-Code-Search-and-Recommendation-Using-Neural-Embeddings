@@ -13,30 +13,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "sort_dict",
-        "score": 0.8805289983749389
+        "func_name": "sort_dictionary_list",
+        "score": 0.9357159566879273
       },
       {
-        "func_name": "sort_counter",
-        "score": 0.8770998245477676
+        "func_name": "sort_by_padding",
+        "score": 0.9117036294937134
       },
       {
         "func_name": "sort_dict",
-        "score": 0.8699049472808837
+        "score": 0.9005289983749389
       }
     ],
     "keyword_top3": [
       {
+        "func_name": "sort_dictionary_list",
+        "score": 0.6388899872261756
+      },
+      {
         "func_name": "extract_list_from_list_of_dict",
-        "score": 0.3880321364018696
+        "score": 0.4535917766271851
       },
       {
-        "func_name": "empty_list",
-        "score": 0.34881256699047
-      },
-      {
-        "func_name": "sort_schemas",
-        "score": 0.31172277164573825
+        "func_name": "EntityCollection.marshal",
+        "score": 0.4224831671589028
       }
     ]
   },
@@ -54,29 +54,29 @@
     "semantic_top3": [
       {
         "func_name": "flatten",
-        "score": 0.9265457550684612
+        "score": 0.9465458742777507
       },
       {
         "func_name": "flatten",
-        "score": 0.9250167767206828
+        "score": 0.9450167767206828
       },
       {
-        "func_name": "flatten",
-        "score": 0.9057813445727031
+        "func_name": "_flatten_list",
+        "score": 0.9431520016988119
       }
     ],
     "keyword_top3": [
       {
         "func_name": "flatten",
-        "score": 0.6431281554327695
+        "score": 0.66672316506286
       },
       {
         "func_name": "flatten",
-        "score": 0.5337503608844156
+        "score": 0.6250285295434991
       },
       {
         "func_name": "flatten",
-        "score": 0.4711045703102938
+        "score": 0.5446930445806593
       }
     ]
   },
@@ -94,30 +94,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "delete_duplicates",
-        "score": 0.9144312858581543
+        "func_name": "dedupe_list",
+        "score": 0.9397444438934326
       },
       {
         "func_name": "remove_duplicates",
-        "score": 0.8832685589790344
+        "score": 0.9346661996841431
       },
       {
-        "func_name": "dedupe",
-        "score": 0.8793336153030396
+        "func_name": "delete_duplicates",
+        "score": 0.9344312858581543
       }
     ],
     "keyword_top3": [
       {
         "func_name": "delete_duplicates",
-        "score": 0.5187835822246054
+        "score": 0.6143595210765492
       },
       {
-        "func_name": "remove_duplicates",
-        "score": 0.4008630879960323
+        "func_name": "dedupe_list",
+        "score": 0.6083616419567087
       },
       {
-        "func_name": "dedupe",
-        "score": 0.3733724873966366
+        "func_name": "unique_everseen",
+        "score": 0.4856129187958135
       }
     ]
   },
@@ -134,30 +134,30 @@
     },
     "semantic_top3": [
       {
+        "func_name": "_intersection",
+        "score": 0.9379864088694255
+      },
+      {
         "func_name": "tuple_intersection",
-        "score": 0.8963997773329417
+        "score": 0.9163997773329418
       },
       {
         "func_name": "intersection",
-        "score": 0.8496267477671305
-      },
-      {
-        "func_name": "_intersection",
-        "score": 0.8360386768976847
+        "score": 0.8737754694620768
       }
     ],
     "keyword_top3": [
       {
         "func_name": "intersection",
-        "score": 0.5264253874361489
+        "score": 0.5198170469652404
       },
       {
         "func_name": "Set.intersection_update",
-        "score": 0.5133499095585561
+        "score": 0.5080949931323381
       },
       {
-        "func_name": "ScienceData.intersect_4",
-        "score": 0.47550081876276895
+        "func_name": "FieldMask.Intersect",
+        "score": 0.49776695273656824
       }
     ]
   },
@@ -175,30 +175,30 @@
     },
     "semantic_top3": [
       {
+        "func_name": "chunk_list",
+        "score": 0.9479990911483764
+      },
+      {
         "func_name": "chunks",
-        "score": 0.9218161821365356
+        "score": 0.9418161821365356
       },
       {
-        "func_name": "_chunks",
-        "score": 0.8909481287002563
-      },
-      {
-        "func_name": "splitAt",
-        "score": 0.8867230534553527
+        "func_name": "chunks",
+        "score": 0.9403794121742248
       }
     ],
     "keyword_top3": [
       {
         "func_name": "chunks",
-        "score": 0.5988964273966009
-      },
-      {
-        "func_name": "iterate_chunks",
-        "score": 0.5093136991918215
+        "score": 0.6752940255145641
       },
       {
         "func_name": "chunks",
-        "score": 0.4605388693117469
+        "score": 0.5922784601331498
+      },
+      {
+        "func_name": "iterate_chunks",
+        "score": 0.5059830824803286
       }
     ]
   },
@@ -214,30 +214,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "reverse_string_list",
-        "score": 0.8955738693475723
-      },
-      {
         "func_name": "reverse",
-        "score": 0.8847830486297608
+        "score": 0.9047830486297608
       },
       {
         "func_name": "solve",
-        "score": 0.8593723177909851
+        "score": 0.8793723177909851
+      },
+      {
+        "func_name": "Sequence.reverse_complement",
+        "score": 0.8735561370849609
       }
     ],
     "keyword_top3": [
       {
+        "func_name": "List.reverse",
+        "score": 0.49512635396590965
+      },
+      {
+        "func_name": "omdict.reverse",
+        "score": 0.45955624749297913
+      },
+      {
         "func_name": "reverse_string_list",
-        "score": 0.4129584308372834
-      },
-      {
-        "func_name": "reverse_words",
-        "score": 0.38785426434239034
-      },
-      {
-        "func_name": "Alignment.reverse_query",
-        "score": 0.3627693131674678
+        "score": 0.4271772250676601
       }
     ]
   },
@@ -255,29 +255,29 @@
     "semantic_top3": [
       {
         "func_name": "is_palindrome",
-        "score": 0.933278234799703
+        "score": 0.953278234799703
       },
       {
         "func_name": "is_palindrome",
-        "score": 0.9312431534131368
+        "score": 0.9512433322270711
       },
       {
-        "func_name": "is_pangram",
-        "score": 0.8798267404238383
+        "func_name": "check_string",
+        "score": 0.9142708094914754
       }
     ],
     "keyword_top3": [
       {
+        "func_name": "check_account_address",
+        "score": 0.4254889811790714
+      },
+      {
         "func_name": "check_char",
-        "score": 0.4277301131253869
+        "score": 0.414527748664015
       },
       {
         "func_name": "check_str",
-        "score": 0.41217420588233283
-      },
-      {
-        "func_name": "is_url",
-        "score": 0.3721595025046757
+        "score": 0.39944963427566815
       }
     ]
   },
@@ -294,30 +294,30 @@
     },
     "semantic_top3": [
       {
-        "func_name": "GitHubObject._strptime",
-        "score": 0.897260308265686
+        "func_name": "_convert_datetime_str",
+        "score": 0.9475396188100179
       },
       {
-        "func_name": "parse",
-        "score": 0.8876551389694214
+        "func_name": "DateStringToDateObject",
+        "score": 0.9132989239692688
       },
       {
-        "func_name": "string_to_datetime",
-        "score": 0.8861857056617737
+        "func_name": "date_to_string",
+        "score": 0.9019054802258809
       }
     ],
     "keyword_top3": [
       {
-        "func_name": "to_snake_case",
-        "score": 0.48119105224087394
-      },
-      {
-        "func_name": "Version.str_to_time",
-        "score": 0.4673306250906964
+        "func_name": "SyncPlan.update_payload",
+        "score": 0.5150994182516059
       },
       {
         "func_name": "MetadataEncoder.default",
-        "score": 0.46385705618504436
+        "score": 0.4795320562262104
+      },
+      {
+        "func_name": "to_snake_case",
+        "score": 0.47175507977138353
       }
     ]
   },
@@ -335,29 +335,29 @@
     "semantic_top3": [
       {
         "func_name": "remove_whitespace",
-        "score": 0.9143767674763997
-      },
-      {
-        "func_name": "remove_all_spaces",
-        "score": 0.9058912022908528
+        "score": 0.9705718072255453
       },
       {
         "func_name": "remove_whitespace",
-        "score": 0.9054872711499532
+        "score": 0.9343767674763997
+      },
+      {
+        "func_name": "clean_whitespace",
+        "score": 0.9283684841791789
       }
     ],
     "keyword_top3": [
       {
-        "func_name": "Tracker.determine_if_whitespace",
-        "score": 0.4550335300277523
-      },
-      {
-        "func_name": "nonalpha_split",
-        "score": 0.44027281636024296
+        "func_name": "FullTextMention.string_matches_sans_whitespace",
+        "score": 0.5692960465029842
       },
       {
         "func_name": "remove_whitespace",
-        "score": 0.419866913206591
+        "score": 0.4870400595123358
+      },
+      {
+        "func_name": "_check_whitespace",
+        "score": 0.48685409913870104
       }
     ]
   },
@@ -375,30 +375,1660 @@
     },
     "semantic_top3": [
       {
-        "func_name": "SimpleBayes.count_token_occurrences",
-        "score": 0.8807107514805264
+        "func_name": "_count",
+        "score": 0.903748263782925
       },
       {
-        "func_name": "count_char_position",
-        "score": 0.8672846264309353
+        "func_name": "count_occurance",
+        "score": 0.8935632605022854
       },
       {
-        "func_name": "text2wfreq",
-        "score": 0.859176754951477
+        "func_name": "vocab_freq",
+        "score": 0.8909819316864014
       }
     ],
     "keyword_top3": [
       {
-        "func_name": "frequency",
-        "score": 0.40532294380767336
+        "func_name": "count_vowels",
+        "score": 0.50186317376471
       },
       {
-        "func_name": "SimpleBayes.count_token_occurrences",
-        "score": 0.3743122365122542
+        "func_name": "count_consonants",
+        "score": 0.50186317376471
       },
       {
-        "func_name": "get_verbatim",
-        "score": 0.3620485182947089
+        "func_name": "NaiveBayes._count",
+        "score": 0.47441294103699083
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 11,
+      "query": "read a file line by line in python",
+      "keywords": [
+        "read",
+        "file",
+        "line"
+      ],
+      "category": "file_io"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "read_lines_from_file",
+        "score": 0.8888679163796561
+      },
+      {
+        "func_name": "FastPing.read_file",
+        "score": 0.8850534268787928
+      },
+      {
+        "func_name": "ExFileObject.readline",
+        "score": 0.8742207595280238
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "BackwardsReader",
+        "score": 0.6303469400187393
+      },
+      {
+        "func_name": "xpathParserContext.xpatherror",
+        "score": 0.4314819165482436
+      },
+      {
+        "func_name": "read_file",
+        "score": 0.4305801718321285
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 12,
+      "query": "write a list of strings to a file",
+      "keywords": [
+        "write",
+        "list",
+        "strings",
+        "file"
+      ],
+      "category": "file_io"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "write_strings_on_files_between_markers",
+        "score": 0.9360911457879203
+      },
+      {
+        "func_name": "write_string_on_file_between_markers",
+        "score": 0.9237933366639274
+      },
+      {
+        "func_name": "HexOutput.string_list_file",
+        "score": 0.9227606671197074
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "_BaseV6._compress_hextets",
+        "score": 0.48092800177308814
+      },
+      {
+        "func_name": "_BaseV6._compress_hextets",
+        "score": 0.47754712685656464
+      },
+      {
+        "func_name": "valid_hostnames",
+        "score": 0.471031034030007
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 13,
+      "query": "read a json file into a dictionary",
+      "keywords": [
+        "read",
+        "json",
+        "file",
+        "dictionary"
+      ],
+      "category": "file_io"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "JsonFile._read_json",
+        "score": 0.9318909366925557
+      },
+      {
+        "func_name": "JsonFile.read_file",
+        "score": 0.9242503960927327
+      },
+      {
+        "func_name": "JsonLoader.load",
+        "score": 0.895388142267863
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "load_json",
+        "score": 0.5387209415331556
+      },
+      {
+        "func_name": "Create._parse_contents",
+        "score": 0.5287870107516625
+      },
+      {
+        "func_name": "GPT2Config.to_json_file",
+        "score": 0.5216120065211403
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 14,
+      "query": "read a csv file into a list of dictionaries",
+      "keywords": [
+        "read",
+        "csv",
+        "file",
+        "list",
+        "dictionaries"
+      ],
+      "category": "file_io"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "read_list_from_csv",
+        "score": 0.9138735294342041
+      },
+      {
+        "func_name": "csv_to_dicts",
+        "score": 0.9078399205207824
+      },
+      {
+        "func_name": "Loader._ReadCsvDict",
+        "score": 0.9026894807815552
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "load_tbl_from_csv",
+        "score": 0.43995950250001237
+      },
+      {
+        "func_name": "read_csv",
+        "score": 0.43636179290633614
+      },
+      {
+        "func_name": "Convert.read_csv",
+        "score": 0.42233899548002907
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 15,
+      "query": "check if a file exists before opening it",
+      "keywords": [
+        "check",
+        "file",
+        "exists"
+      ],
+      "category": "file_io"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "check_exists",
+        "score": 0.9101983547210694
+      },
+      {
+        "func_name": "file_exists",
+        "score": 0.9047021508216858
+      },
+      {
+        "func_name": "check_existance",
+        "score": 0.8941450834274292
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "file_exists",
+        "score": 0.5689593078923304
+      },
+      {
+        "func_name": "file_exists",
+        "score": 0.5513904210812102
+      },
+      {
+        "func_name": "file_found",
+        "score": 0.5427845381564527
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 16,
+      "query": "merge two dictionaries in python",
+      "keywords": [
+        "merge",
+        "two",
+        "dictionaries"
+      ],
+      "category": "data_structures"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "merge_two_dictionaries",
+        "score": 0.9726224112510682
+      },
+      {
+        "func_name": "merge_dictionaries",
+        "score": 0.9515288448333741
+      },
+      {
+        "func_name": "merge_dicts",
+        "score": 0.9324431800842286
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "merge_dictionaries",
+        "score": 0.6439366716034097
+      },
+      {
+        "func_name": "_merge",
+        "score": 0.5059251429726461
+      },
+      {
+        "func_name": "merge_dict",
+        "score": 0.502681065369346
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 17,
+      "query": "sort a dictionary by its values",
+      "keywords": [
+        "sort",
+        "dictionary",
+        "values"
+      ],
+      "category": "data_structures"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "sort_dictionary_list",
+        "score": 0.9305454405148824
+      },
+      {
+        "func_name": "sort_dict",
+        "score": 0.9232402197519939
+      },
+      {
+        "func_name": "sort_counter",
+        "score": 0.9200062648455303
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "set_attributes",
+        "score": 0.47634452385690235
+      },
+      {
+        "func_name": "dictPromise",
+        "score": 0.46346540671452297
+      },
+      {
+        "func_name": "group_dict_by_value",
+        "score": 0.4557636560015072
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 18,
+      "query": "invert a dictionary swapping keys and values",
+      "keywords": [
+        "invert",
+        "dictionary",
+        "keys",
+        "values"
+      ],
+      "category": "data_structures"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "invert",
+        "score": 0.9491825601032802
+      },
+      {
+        "func_name": "invert_map",
+        "score": 0.9420040151051112
+      },
+      {
+        "func_name": "invert",
+        "score": 0.9360179802349635
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "GadgetClassifier._invert_dictionary",
+        "score": 0.6351854992828189
+      },
+      {
+        "func_name": "invert_map",
+        "score": 0.5652844676019442
+      },
+      {
+        "func_name": "invert",
+        "score": 0.5594956682498141
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 19,
+      "query": "get the key with the maximum value in a dictionary",
+      "keywords": [
+        "key",
+        "maximum",
+        "value",
+        "dictionary"
+      ],
+      "category": "data_structures"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "get_max_value_key",
+        "score": 0.9576279433568319
+      },
+      {
+        "func_name": "_get_optimal_thresholds",
+        "score": 0.8828102249569363
+      },
+      {
+        "func_name": "do_max",
+        "score": 0.8753159236907959
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "NURemoteAttribute.get_max_value",
+        "score": 0.43948580640429913
+      },
+      {
+        "func_name": "generate_maximum_validator",
+        "score": 0.43736910935689793
+      },
+      {
+        "func_name": "convert_option_dict_to_dict",
+        "score": 0.4051460784702703
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 20,
+      "query": "filter a dictionary by a condition on values",
+      "keywords": [
+        "filter",
+        "dictionary",
+        "condition",
+        "values"
+      ],
+      "category": "data_structures"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "_filter_dict",
+        "score": 0.9140137335232326
+      },
+      {
+        "func_name": "dicts_filter",
+        "score": 0.9098004599979945
+      },
+      {
+        "func_name": "filter_dict",
+        "score": 0.9033613702229091
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "condition_from_code",
+        "score": 0.46937220478344055
+      },
+      {
+        "func_name": "Group.to_dict",
+        "score": 0.45883347925814566
+      },
+      {
+        "func_name": "ConditionalRowFilter.to_pb",
+        "score": 0.4569689678378954
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 21,
+      "query": "generate a random integer in a specific range",
+      "keywords": [
+        "generate",
+        "random",
+        "integer",
+        "range"
+      ],
+      "category": "math"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "Integer.simulate",
+        "score": 0.906277060508728
+      },
+      {
+        "func_name": "Random.randints",
+        "score": 0.8890500211715698
+      },
+      {
+        "func_name": "secure_randint",
+        "score": 0.853151650428772
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "InverseModel._random_x",
+        "score": 0.5807887494419357
+      },
+      {
+        "func_name": "password_generator",
+        "score": 0.5773943351508568
+      },
+      {
+        "func_name": "generate_random_string",
+        "score": 0.574218018851943
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 22,
+      "query": "check if a number is prime",
+      "keywords": [
+        "check",
+        "number",
+        "prime"
+      ],
+      "category": "math"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "prime_check",
+        "score": 0.9624824436505636
+      },
+      {
+        "func_name": "is_prime",
+        "score": 0.9379593046506246
+      },
+      {
+        "func_name": "prime_num",
+        "score": 0.9334583632151287
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "is_prime",
+        "score": 0.7277831363378857
+      },
+      {
+        "func_name": "newman_prime",
+        "score": 0.678049379716473
+      },
+      {
+        "func_name": "Primes._findNextPrime",
+        "score": 0.5794728314596709
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 23,
+      "query": "calculate the factorial of a number",
+      "keywords": [
+        "calculate",
+        "factorial",
+        "number"
+      ],
+      "category": "math"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "factorial",
+        "score": 0.9183899513880412
+      },
+      {
+        "func_name": "factorial_recur",
+        "score": 0.9105065218607585
+      },
+      {
+        "func_name": "special_factorial",
+        "score": 0.8685716859499614
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "mach2cas",
+        "score": 0.5508398509118755
+      },
+      {
+        "func_name": "pgcd",
+        "score": 0.4686238676937995
+      },
+      {
+        "func_name": "autocorr_coeff",
+        "score": 0.4599633159482326
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 24,
+      "query": "compute the greatest common divisor of two numbers",
+      "keywords": [
+        "greatest",
+        "common",
+        "divisor",
+        "gcd"
+      ],
+      "category": "math"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "greatest_common_divisor",
+        "score": 0.921369514465332
+      },
+      {
+        "func_name": "largest_divisor",
+        "score": 0.8692429637908935
+      },
+      {
+        "func_name": "ceil",
+        "score": 0.8302173328399658
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "compute_fwhm_1d_simple",
+        "score": 0.42119070934922287
+      },
+      {
+        "func_name": "lcm",
+        "score": 0.4010334394335856
+      },
+      {
+        "func_name": "pgcd",
+        "score": 0.39946569985006675
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 25,
+      "query": "round a floating point number to n decimal places",
+      "keywords": [
+        "round",
+        "float",
+        "decimal",
+        "places"
+      ],
+      "category": "math"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "round_to_n_decimal_places",
+        "score": 0.9728496000501845
+      },
+      {
+        "func_name": "smart_round",
+        "score": 0.9131115574306912
+      },
+      {
+        "func_name": "round_down",
+        "score": 0.9033102888531155
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "decimaltimestamp",
+        "score": 0.6217317648825025
+      },
+      {
+        "func_name": "binary_float_to_decimal_float",
+        "score": 0.6140072425575908
+      },
+      {
+        "func_name": "ratio",
+        "score": 0.5878622432530707
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 26,
+      "query": "get the current date and time in python",
+      "keywords": [
+        "current",
+        "date",
+        "time"
+      ],
+      "category": "datetime"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "Date.now",
+        "score": 0.8783513307571411
+      },
+      {
+        "func_name": "WebUtils.get_browser_datetime",
+        "score": 0.8727830648422241
+      },
+      {
+        "func_name": "midnight",
+        "score": 0.8664721250534058
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "ExifEdit.add_date_time_original",
+        "score": 0.6399799788762649
+      },
+      {
+        "func_name": "XGanttWidgetItem.setDateTimeEnd",
+        "score": 0.5841763985769196
+      },
+      {
+        "func_name": "XGanttWidgetItem.setDateTimeStart",
+        "score": 0.550641242440395
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 27,
+      "query": "calculate the difference between two dates",
+      "keywords": [
+        "difference",
+        "between",
+        "dates"
+      ],
+      "category": "datetime"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "_total_microsec",
+        "score": 0.888690550327301
+      },
+      {
+        "func_name": "TimeDifference.enrich",
+        "score": 0.8695123195648193
+      },
+      {
+        "func_name": "get_t_factor",
+        "score": 0.8414231252670288
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "TimeSeries.difference",
+        "score": 0.48996885573430216
+      },
+      {
+        "func_name": "ArcGISParser._update_dates",
+        "score": 0.4469502818193524
+      },
+      {
+        "func_name": "get_dates_file",
+        "score": 0.4277940274141352
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 28,
+      "query": "convert a timestamp to a human readable date string",
+      "keywords": [
+        "convert",
+        "timestamp",
+        "date",
+        "string"
+      ],
+      "category": "datetime"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "_convert_to_datetime",
+        "score": 0.9304047656059266
+      },
+      {
+        "func_name": "time_to_str",
+        "score": 0.9269369554519653
+      },
+      {
+        "func_name": "Timestamp.ToJsonString",
+        "score": 0.9261751413345337
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "ZabbixAPI.timestamp_to_datetime",
+        "score": 0.5723847632207522
+      },
+      {
+        "func_name": "ProblemReporter.InvalidLineEnd",
+        "score": 0.5272512508619235
+      },
+      {
+        "func_name": "name_without_zeroes",
+        "score": 0.5023592935153528
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 29,
+      "query": "send an http get request and parse the json response",
+      "keywords": [
+        "http",
+        "get",
+        "request",
+        "json",
+        "response"
+      ],
+      "category": "web"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "ScheduleRequestHandler.handle_json_wrapper_GET",
+        "score": 0.8602486562728882
+      },
+      {
+        "func_name": "HttpClient.parse_response",
+        "score": 0.8571234655380249
+      },
+      {
+        "func_name": "Http._process_response",
+        "score": 0.8490802264213562
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "HSRequest._get_json_response",
+        "score": 0.4285239674648201
+      },
+      {
+        "func_name": "RemoteConnection._request",
+        "score": 0.3846142783325651
+      },
+      {
+        "func_name": "WWebSessionBase.read_request_line",
+        "score": 0.37339082464712425
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 30,
+      "query": "download a file from a url",
+      "keywords": [
+        "download",
+        "file",
+        "url"
+      ],
+      "category": "web"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "download_url",
+        "score": 0.941796579360962
+      },
+      {
+        "func_name": "download_file",
+        "score": 0.9379405164718628
+      },
+      {
+        "func_name": "download_file",
+        "score": 0.9367801332473755
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "downlad_file",
+        "score": 0.6377066758253231
+      },
+      {
+        "func_name": "download_file_powershell",
+        "score": 0.5949963391906278
+      },
+      {
+        "func_name": "download_file",
+        "score": 0.5759786762499558
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 31,
+      "query": "convert a list of tuples to a dictionary",
+      "keywords": [
+        "convert",
+        "list",
+        "tuples",
+        "dictionary"
+      ],
+      "category": "data_processing"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "DefaultApiClient._convert_list_tuples_to_dict",
+        "score": 0.9499901413917542
+      },
+      {
+        "func_name": "DefaultApiClient._convert_dict_to_list_tuples",
+        "score": 0.9321630477905274
+      },
+      {
+        "func_name": "_get_protocol_tuple",
+        "score": 0.9047914457321167
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "html",
+        "score": 0.6113714534432454
+      },
+      {
+        "func_name": "MultiIndex.from_tuples",
+        "score": 0.5470255254026208
+      },
+      {
+        "func_name": "Svg2RlgAttributeConverter.convertLengthList",
+        "score": 0.5452741995425864
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 32,
+      "query": "group a list of items by a specific attribute",
+      "keywords": [
+        "group",
+        "list",
+        "items",
+        "attribute"
+      ],
+      "category": "data_processing"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "list_items",
+        "score": 0.8956981134414673
+      },
+      {
+        "func_name": "group_pairs",
+        "score": 0.8776020717620849
+      },
+      {
+        "func_name": "Grouping.add",
+        "score": 0.8646088242530823
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "group_pairs",
+        "score": 0.4125067271092322
+      },
+      {
+        "func_name": "LRUCache.items",
+        "score": 0.4120405236870407
+      },
+      {
+        "func_name": "Array.as_list",
+        "score": 0.3923221154163827
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 33,
+      "query": "compute the moving average of a list of numbers",
+      "keywords": [
+        "moving",
+        "average",
+        "list",
+        "numbers"
+      ],
+      "category": "data_processing"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "moving_average",
+        "score": 0.925307674407959
+      },
+      {
+        "func_name": "moving_average_convergence",
+        "score": 0.9062859845161438
+      },
+      {
+        "func_name": "moving_average",
+        "score": 0.883974084854126
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "average",
+        "score": 0.5572697845086557
+      },
+      {
+        "func_name": "triangular_moving_average",
+        "score": 0.5546387031384493
+      },
+      {
+        "func_name": "moving_average_convergence_divergence",
+        "score": 0.49779401608220597
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 34,
+      "query": "normalize a list of numbers to a range between 0 and 1",
+      "keywords": [
+        "normalize",
+        "list",
+        "numbers",
+        "range"
+      ],
+      "category": "data_processing"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "normalize",
+        "score": 0.9105646887692538
+      },
+      {
+        "func_name": "_normalize",
+        "score": 0.9097360649975863
+      },
+      {
+        "func_name": "normalize",
+        "score": 0.9046720543774691
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "normalize",
+        "score": 0.471633318859762
+      },
+      {
+        "func_name": "normalize",
+        "score": 0.46222922347970824
+      },
+      {
+        "func_name": "eratosthene",
+        "score": 0.40005387536328263
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 35,
+      "query": "retry a function call on failure with exponential backoff",
+      "keywords": [
+        "retry",
+        "function",
+        "failure",
+        "backoff"
+      ],
+      "category": "utilities"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "retry",
+        "score": 0.9422798461384243
+      },
+      {
+        "func_name": "retry",
+        "score": 0.9410999125904507
+      },
+      {
+        "func_name": "retry",
+        "score": 0.9408892101711697
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "retry",
+        "score": 0.5482203494923876
+      },
+      {
+        "func_name": "retry",
+        "score": 0.5413795171337233
+      },
+      {
+        "func_name": "retry",
+        "score": 0.5411550461316181
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 36,
+      "query": "measure the execution time of a function",
+      "keywords": [
+        "measure",
+        "execution",
+        "time",
+        "function"
+      ],
+      "category": "utilities"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "timing",
+        "score": 0.9099456071853638
+      },
+      {
+        "func_name": "count_time",
+        "score": 0.8369596430233546
+      },
+      {
+        "func_name": "AsyncObject.timeit",
+        "score": 0.8342286467552185
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "ProfilerDataTree.format_measure",
+        "score": 0.4034327178046244
+      },
+      {
+        "func_name": "timing",
+        "score": 0.38818744840299535
+      },
+      {
+        "func_name": "MeasurementMap.measure_int_put",
+        "score": 0.38576784328401453
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 37,
+      "query": "create a decorator that caches function results",
+      "keywords": [
+        "decorator",
+        "cache",
+        "function",
+        "results"
+      ],
+      "category": "utilities"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "cache_result",
+        "score": 0.858598244190216
+      },
+      {
+        "func_name": "cache_result",
+        "score": 0.8537712812423706
+      },
+      {
+        "func_name": "SwitchManager.with_result_cache",
+        "score": 0.8516551375389099
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "create_cache",
+        "score": 0.41804690406064665
+      },
+      {
+        "func_name": "Cache.get_unset_cache",
+        "score": 0.3813954704891011
+      },
+      {
+        "func_name": "SettingsManager.mailcap_find_match",
+        "score": 0.375952488164876
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 38,
+      "query": "validate an email address using a regular expression",
+      "keywords": [
+        "validate",
+        "email",
+        "regular",
+        "expression"
+      ],
+      "category": "utilities"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "validate_email",
+        "score": 0.9118720531463623
+      },
+      {
+        "func_name": "ValidateEmail",
+        "score": 0.8984173774719239
+      },
+      {
+        "func_name": "validate_email_with_name",
+        "score": 0.8938182830810547
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "email",
+        "score": 0.5732523216572993
+      },
+      {
+        "func_name": "validate_regexp",
+        "score": 0.47842401838114357
+      },
+      {
+        "func_name": "EmailType.validate",
+        "score": 0.4697361447688535
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 39,
+      "query": "generate a random alphanumeric string of a given length",
+      "keywords": [
+        "generate",
+        "random",
+        "alphanumeric",
+        "string"
+      ],
+      "category": "utilities"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "rand_alphastr",
+        "score": 0.9160009813308716
+      },
+      {
+        "func_name": "rand_str",
+        "score": 0.9127104473114014
+      },
+      {
+        "func_name": "Invitation.generate_random_string",
+        "score": 0.9097644329071045
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "User.generate_hash",
+        "score": 0.7264206919178551
+      },
+      {
+        "func_name": "generate_random_string",
+        "score": 0.6908184149218025
+      },
+      {
+        "func_name": "password_generator",
+        "score": 0.5823298940776929
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 40,
+      "query": "convert a python object to a json string",
+      "keywords": [
+        "convert",
+        "python",
+        "object",
+        "json",
+        "string"
+      ],
+      "category": "utilities"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "_JsonValueToPythonValue",
+        "score": 0.9618455685888018
+      },
+      {
+        "func_name": "object_to_json",
+        "score": 0.9593501009259905
+      },
+      {
+        "func_name": "_PythonValueToJsonValue",
+        "score": 0.9527291573796953
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "dump_json",
+        "score": 0.7218437302182523
+      },
+      {
+        "func_name": "Specification.to_json",
+        "score": 0.623983401990194
+      },
+      {
+        "func_name": "BERTVocab.from_json",
+        "score": 0.5802685621685558
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 41,
+      "query": "implement binary search on a sorted list",
+      "keywords": [
+        "binary",
+        "search",
+        "sorted",
+        "list"
+      ],
+      "category": "algorithms"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "optimized_binary_search",
+        "score": 0.8520519464356558
+      },
+      {
+        "func_name": "optimized_binary_search_lower",
+        "score": 0.8517297833306449
+      },
+      {
+        "func_name": "sorted_exists",
+        "score": 0.8293828984669276
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "merge_sorted_list",
+        "score": 0.47037876977228543
+      },
+      {
+        "func_name": "bisect_index",
+        "score": 0.39564797685347375
+      },
+      {
+        "func_name": "Enum.options",
+        "score": 0.36587667062730683
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 42,
+      "query": "find all permutations of a list",
+      "keywords": [
+        "permutations",
+        "list"
+      ],
+      "category": "algorithms"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "combinations_list",
+        "score": 0.9056871883074443
+      },
+      {
+        "func_name": "rank_permutation",
+        "score": 0.8789841723442078
+      },
+      {
+        "func_name": "_get_sym_mappings_from_permutations",
+        "score": 0.8489446512858073
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "OwlSim2Api.matchers",
+        "score": 0.6281608032632209
+      },
+      {
+        "func_name": "GadgetFinder._build_gadgets",
+        "score": 0.46751054802429304
+      },
+      {
+        "func_name": "RDDLParser.p_cpf_list",
+        "score": 0.3493971444697662
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 43,
+      "query": "implement a depth first search traversal of a graph",
+      "keywords": [
+        "depth",
+        "first",
+        "search",
+        "graph"
+      ],
+      "category": "algorithms"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "depth_first",
+        "score": 0.8793664336204529
+      },
+      {
+        "func_name": "Graph._depth_first_search",
+        "score": 0.8723601579666137
+      },
+      {
+        "func_name": "_dfs",
+        "score": 0.8572582721710205
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "RootNode.as_graph",
+        "score": 0.4233812033882158
+      },
+      {
+        "func_name": "Graph.iterdfs",
+        "score": 0.3817272976537325
+      },
+      {
+        "func_name": "traversal",
+        "score": 0.370838514148264
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 44,
+      "query": "find the longest common subsequence of two strings",
+      "keywords": [
+        "longest",
+        "common",
+        "subsequence",
+        "strings"
+      ],
+      "category": "algorithms"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "lcs_of_three",
+        "score": 0.9166099739074707
+      },
+      {
+        "func_name": "_longest_common_subsequence",
+        "score": 0.9141380262374877
+      },
+      {
+        "func_name": "longest_common_substring_similarity",
+        "score": 0.8891015005111694
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "_longest_common_subsequence",
+        "score": 0.7005527078292038
+      },
+      {
+        "func_name": "longest_common_subsequence",
+        "score": 0.5910222392959981
+      },
+      {
+        "func_name": "longest",
+        "score": 0.47711533346376256
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 45,
+      "query": "compute the hash of a file using md5",
+      "keywords": [
+        "hash",
+        "file",
+        "md5"
+      ],
+      "category": "algorithms"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "File.get_content_hash",
+        "score": 0.9166225910186767
+      },
+      {
+        "func_name": "File._calculate_hash",
+        "score": 0.8969265341758728
+      },
+      {
+        "func_name": "get_digest",
+        "score": 0.8833889961242676
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "Project._hash_file",
+        "score": 0.481556262334639
+      },
+      {
+        "func_name": "get_checksums",
+        "score": 0.46133973944744294
+      },
+      {
+        "func_name": "hash_text",
+        "score": 0.4399651170861863
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 46,
+      "query": "implement a singleton pattern in python",
+      "keywords": [
+        "singleton",
+        "pattern",
+        "class"
+      ],
+      "category": "oop"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "singleton_init_by",
+        "score": 0.8293661157290141
+      },
+      {
+        "func_name": "Container.registerSingleton",
+        "score": 0.8152509013811747
+      },
+      {
+        "func_name": "pattern",
+        "score": 0.8047787229220073
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "singleton",
+        "score": 0.45924443358191863
+      },
+      {
+        "func_name": "singleton",
+        "score": 0.4240703159332162
+      },
+      {
+        "func_name": "XView.destroySingleton",
+        "score": 0.408107213258155
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 47,
+      "query": "create an iterator class that generates fibonacci numbers",
+      "keywords": [
+        "iterator",
+        "class",
+        "fibonacci",
+        "numbers"
+      ],
+      "category": "oop"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "DataIterator._create_batches",
+        "score": 0.8623696088790893
+      },
+      {
+        "func_name": "dimensionalIterator",
+        "score": 0.8295547199249267
+      },
+      {
+        "func_name": "generate_candidates",
+        "score": 0.8172062349319458
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "carmichael",
+        "score": 0.33016333906631334
+      },
+      {
+        "func_name": "MicroscopyCollection.zstack_proxy_iterator",
+        "score": 0.3261515829927591
+      },
+      {
+        "func_name": "eratosthenes",
+        "score": 0.31869450801387517
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 48,
+      "query": "deep copy a nested python object",
+      "keywords": [
+        "deep",
+        "copy",
+        "nested",
+        "object"
+      ],
+      "category": "utilities"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "deepcopy",
+        "score": 0.8872964978218079
+      },
+      {
+        "func_name": "deepish_copy",
+        "score": 0.8837905685106914
+      },
+      {
+        "func_name": "ScalarCoefs.copy",
+        "score": 0.8766696453094482
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "SparseDataFrame.copy",
+        "score": 0.4513525164224682
+      },
+      {
+        "func_name": "MailParser.headers",
+        "score": 0.3928850496570081
+      },
+      {
+        "func_name": "Failure.copy",
+        "score": 0.39269774528336876
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 49,
+      "query": "convert a class instance to a dictionary",
+      "keywords": [
+        "convert",
+        "class",
+        "instance",
+        "dictionary"
+      ],
+      "category": "oop"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "to_dict",
+        "score": 0.9078888456026714
+      },
+      {
+        "func_name": "_dict_to_pio",
+        "score": 0.8933693925539653
+      },
+      {
+        "func_name": "__dict_to_service_spec",
+        "score": 0.8906574408213298
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "is_commentable",
+        "score": 0.5195977412507085
+      },
+      {
+        "func_name": "ModelMapper.instance_for_arguments",
+        "score": 0.4600698471231899
+      },
+      {
+        "func_name": "BaseEntityView._check_view_permission",
+        "score": 0.43078730166205614
+      }
+    ]
+  },
+  {
+    "query": {
+      "id": 50,
+      "query": "create a context manager for database connections",
+      "keywords": [
+        "context",
+        "manager",
+        "database",
+        "connections"
+      ],
+      "category": "oop"
+    },
+    "semantic_top3": [
+      {
+        "func_name": "couchdb_admin_party",
+        "score": 0.8620672821998596
+      },
+      {
+        "func_name": "DbAdmin.get_db_args_env",
+        "score": 0.8551417589187622
+      },
+      {
+        "func_name": "DataBase.connection",
+        "score": 0.8294555068016052
+      }
+    ],
+    "keyword_top3": [
+      {
+        "func_name": "project_version",
+        "score": 0.5647711210433557
+      },
+      {
+        "func_name": "RecordIndexer.create_producer",
+        "score": 0.5056506673561414
+      },
+      {
+        "func_name": "Plugin.start_subscribe",
+        "score": 0.4814534306768478
       }
     ]
   }
